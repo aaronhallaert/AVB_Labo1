@@ -114,4 +114,27 @@ public class Node {
     public void setMax(int max) {
         this.max = max;
     }
+
+    public void resetMax(){
+        this.setMax(this.getInterval().getHigh());
+    }
+
+    /**
+     * update max boven nieuwe node
+     * @param max
+     */
+    public void updateMax(int max){
+
+        if(max >= this.getMax()) {
+            this.setMax(max);
+            if(this.getParentNode()!=null) {
+                this.getParentNode().updateMax(max);
+            }
+        }
+        else{
+            if(this.getParentNode()!=null) {
+                this.getParentNode().updateMax(this.getInterval().getHigh());
+            }
+        }
+    }
 }

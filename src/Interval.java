@@ -34,13 +34,14 @@ public class Interval implements Comparable<Interval> {
      * Returnd 1 als dit interval een hogere ondergrens heeft, of een gelijke ondergrens en een hogere bovengrens heeft dan Interval o
      */
     public int compareTo(Interval o) {
-        if(this.low <= o.getLow() && this.high<o.getHigh()){
+        //System.out.println(this + " compare to "+o);
+        if(this.low < o.getLow() || ( this.low == o.getLow() && this.high<o.getHigh())){
             return -1;
         }
         else if(this.low==o.getLow() && this.high==o.getHigh()){
             return 0;
         }
-        else if(this.low>=o.getLow() && this.high>o.getHigh()){
+        else if(this.low>o.getLow() || ( this.low == o.getLow() && this.high>o.getHigh())){
             return 1;
         }
 

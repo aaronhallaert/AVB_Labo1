@@ -20,6 +20,7 @@ public class Labo1IntervalTree {
 
             Interval interval = new Interval(low,high);
             System.out.println(interval);
+
             intervals.add(interval);
         }
         System.out.println();

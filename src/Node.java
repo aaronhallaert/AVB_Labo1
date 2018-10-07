@@ -6,12 +6,12 @@ public class Node {
     private Node parentNode;
     private int max;
 
-    public Node(Interval interval, Node leftNode, Node rightNode, Node parentNode, int max) {
+    public Node(Interval interval, Node leftNode, Node rightNode, Node parentNode) {
         this.interval = interval;
         this.leftNode = leftNode;
         this.rightNode = rightNode;
         this.parentNode = parentNode;
-        this.max = max;
+        this.max = interval.getHigh();
     }
 
     public Node(){
@@ -23,11 +23,12 @@ public class Node {
     }
 
     public boolean isBalanced(){
-        if(this.rightDepth()+2<this.leftDepth() || this.rightDepth()>this.leftDepth()+2){
-            return true;
+
+        if(this.rightDepth()+2<=this.leftDepth() || this.rightDepth()>=this.leftDepth()+2){
+            return false;
         }
         else{
-            return false;
+            return true;
         }
     }
 
@@ -38,8 +39,14 @@ public class Node {
         else
         {
             /* compute the depth of each subtree */
-            int lDepth = this.getLeftNode().maxDepth();
-            int rDepth = this.getRightNode().maxDepth();
+            int lDepth =0;
+            if(this.getLeftNode()!=null) {
+                lDepth = this.getLeftNode().maxDepth();
+            }
+            int rDepth = 0;
+            if(this.getRightNode()!=null){
+                rDepth=this.getRightNode().maxDepth();
+            }
 
             /* use the larger one */
             if (lDepth > rDepth)
@@ -51,11 +58,21 @@ public class Node {
 
     public int rightDepth()
     {
-        return this.getRightNode().maxDepth();
+        if(this.getRightNode()==null){
+            return 0;
+        }
+        else {
+            return this.getRightNode().maxDepth();
+        }
     }
 
     public int leftDepth(){
-        return this.getLeftNode().maxDepth();
+        if(this.getLeftNode()==null) {
+            return 0;
+        }
+        else{
+            return this.getLeftNode().maxDepth();
+        }
     }
 
     public Interval getInterval() {

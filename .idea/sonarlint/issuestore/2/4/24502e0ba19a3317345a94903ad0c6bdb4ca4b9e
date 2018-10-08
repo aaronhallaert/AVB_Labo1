@@ -1,39 +1,0 @@
-
-Ksquid:S2200"/Only the sign of the result should be examined.(‹‡Ô×8ò¾ì„å,
-Vsquid:S1854"5Remove this useless assignment to local variable "c".(¸·“ƒÿÿÿÿÿ8ò¾ì„å,
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(´‹æ8ò¾ì„å,
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(­¿¨…ÿÿÿÿÿ8ò¾ì„å,
-Csquid:S1604"(Make this anonymous inner class a lambda(ú¾¡ 8ñ…ğ„å,
-Ksquid:S2200"/Only the sign of the result should be examined.(Şë±¡8ò¾ì„å,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éÛè§8ò¾ì„å,
-Csquid:S1604"(Make this anonymous inner class a lambda(ú¾¡ 8ïÌû„å,
-fsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥àÖ8ò¾ì„å,
-nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 72 to the 15 allowed.(ö”›í8ò¾ì„å,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(³”Ó²8ò¾ì„å,
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(Ïß¿¸üÿÿÿÿ8ÕÅåşä,
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(ô÷Øìøÿÿÿÿ8ò¾ì„å,
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(Ÿ´¯8ò¾ì„å,
-Jsquid:S1066"/Merge this if statement with the enclosing one.(ßú8ò¾ì„å,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÃÆ¤˜ÿÿÿÿÿ8ò¾ì„å,
-Qsquid:S1854"5Remove this useless assignment to local variable "c".(Ğ¿Ìé8ò¾ì„å,
-Jsquid:S1066"/Merge this if statement with the enclosing one.(ßú8ò¾ì„å,
-Ksquid:S1066"/Merge this if statement with the enclosing one.(¾²´ÿ8ò¾ì„å,
-Ksquid:S1066"/Merge this if statement with the enclosing one.(¾²´ÿ8ä°ı„å,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(è¥‡ƒ8ò¾ì„å,
-Gsquid:S1481"&Remove this unused "c" local variable.(¸·“ƒÿÿÿÿÿ8ò¾ì„å,
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Å°¬8ò¾ì„å,
-Bsquid:S1481"&Remove this unused "c" local variable.(Ğ¿Ìé8ò¾ì„å,
-Jsquid:S1066"/Merge this if statement with the enclosing one.(ßú8ò¾ì„å,
-fsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(†›‹v8ò¾ì„å,
-T
-squid:S106"9Replace this use of System.out or System.err by a logger.(ÁÎÚŞ8ÕÅåşä,
-Jsquid:S1066"/Merge this if statement with the enclosing one.(ßú8ò¾ì„å,
-Y
-squid:S106"9Replace this use of System.out or System.err by a logger.(ïÑ÷ûÿÿÿÿ8óÅâşä,
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ŒŠûÿÿÿÿ8ò¾ì„å,
-1squid:S1220""Move this file to a named package.

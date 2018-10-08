@@ -5,6 +5,10 @@ import java.util.Random;
 public class Labo1IntervalTree {
 
     public static void main(String[] args) {
+
+        long startTime = System.currentTimeMillis();
+
+
         Random rnd = new Random(31415);
 
 
@@ -51,5 +55,11 @@ public class Labo1IntervalTree {
         for(Interval interval : overlappingIntervals) {
             System.out.printf("Overlap of [%d, %d) with %s : %s\n",a,b,interval,ab.calculateOverlap(interval));
         }
+
+
+        long endTime = System.currentTimeMillis();
+
+        long finalTime= (endTime-startTime);
+        System.out.println("tijd verlopen na programma "+finalTime+ " ms");
     }
 }

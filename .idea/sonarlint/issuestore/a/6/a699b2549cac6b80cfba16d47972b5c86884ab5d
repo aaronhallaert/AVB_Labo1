@@ -1,10 +1,0 @@
-
-;squid:S1481"&Remove this unused "E" local variable.(ıÎœ‰
-^squid:UselessImportCheck"7Remove this unused import 'java.util.stream.IntStream'.(ÙÉ½Ÿùÿÿÿÿ
-Osquid:S1118":Add a private constructor to hide the implicit public one.(×¼­Æ
-Rsquid:UselessImportCheck"0Remove this unused import 'java.io.PrintStream'.(×ê’
-Zsquid:S2095"EUse try-with-resources or close this "Scanner" in a "finally" clause.(Ê‰ß
-1squid:S1220""Move this file to a named package.
-ksquid:S3457"Q%n should be used in place of \n to produce the platform-specific line separator.(…£ı·ûÿÿÿÿ
-gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çĞãè
-gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıÎœ‰

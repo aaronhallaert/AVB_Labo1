@@ -18,14 +18,6 @@ public class IntervalTree {
             this.addNode(root, n);
         }
 
-        System.out.print("Deze tree is ");
-        if(root.isBalanced()){
-            System.out.println("gebalanceerd");
-        }
-        else{
-            System.out.println("niet gebalanceerd");
-        }
-
         // update max voor volledige boom
         for (Node node : findLeaves()) {
             node.updateMax(node.getMax());
@@ -42,17 +34,18 @@ public class IntervalTree {
         // nog geen root
         if (root==null){
             root=node;
-            //System.out.println("root wordt "+ node.getInterval());
         }
         else{
 
-            int compare =node.getInterval().compareTo(tempRoot.getInterval());
-            //System.out.println(node.getInterval()+" wordt vergeleken met " +tempRoot.getInterval());
+            // controle of node rechts of links van tempRoot dient te komen
+            int compare = node.getInterval().compareTo(tempRoot.getInterval());
+
+            // node komt rechts van temproot (als rechterkind van temproot null is, anders recursief verdergaan
+            // op rechterkind van temproot)
             if(compare ==1){
                if(tempRoot.getRightNode()==null){
                    tempRoot.setRightNode(node);
                    node.setParentNode(tempRoot);
-                   //System.out.println("rechterkind van "+tempRoot.getInterval()+" wordt "+ node.getInterval());
                }
                else{
                    this.addNode(tempRoot.getRightNode(), node);
@@ -61,12 +54,13 @@ public class IntervalTree {
             else if(compare==0){
                 System.out.println("Dit interval behoort al reeds tot de zoekboom");
             }
+
+            // node komt links van temproot (als linkerkind van temproot null is, anders recursief verdergaan
+            // op linkerkind van temproot)
             else if(compare==-1){
                 if(tempRoot.getLeftNode()==null){
                     tempRoot.setLeftNode(node);
                     node.setParentNode(tempRoot);
-                    //System.out.println("linkerkind van "+tempRoot.getInterval()+" wordt "+ node.getInterval());
-
                 }
                 else{
                     this.addNode(tempRoot.getLeftNode(), node);
@@ -79,10 +73,7 @@ public class IntervalTree {
         // balance check tree after adding node, we krijgen de eerste ongebalanceerde node in onze weg naar boven terug
         Node unbalancedNode=this.checkBalance(node);
         if(unbalancedNode!=null){
-
             performRotation(unbalancedNode);
-            System.out.println("unbalanced " + unbalancedNode.getInterval() +" met parent "+unbalancedNode.getParentNode().getInterval() );
-
         }
 
 
@@ -94,6 +85,11 @@ public class IntervalTree {
         return result;
     }
 
+    /**
+     * helper methode bij het zoeken naar leaves
+     * @param result
+     * @param node
+     */
     public void helperLeaves(List<Node> result, Node node){
         if(node.getRightNode()==null && node.getLeftNode()==null){
             result.add(node);
@@ -114,12 +110,10 @@ public class IntervalTree {
 
 
     public void performRotation(Node unbalancedNode){
-        //System.out.println("Er gebeurt een rotatie met als ongebalanceerde node " + unbalancedNode.getInterval());
-        // doe rotatie met node "unbalancedNode" als root
-
 
         // rechts ongebalanceerd
         if(unbalancedNode.rightDepth()>unbalancedNode.leftDepth()){
+
             // perform LL rotation
             // b wordt root, c rechterkind van b, a linkerkind van b
             if(unbalancedNode.getRightNode().rightDepth()> unbalancedNode.getRightNode().leftDepth()){
@@ -147,10 +141,8 @@ public class IntervalTree {
                 if(a==root){
                     root=b;
                 }
-
-
-
             }
+
             // perform LR rotation
             else{
                 Node a= unbalancedNode;
@@ -181,12 +173,8 @@ public class IntervalTree {
                 if(a==root){
                     root=c;
                 }
-
-
-
             }
         }
-
 
         // links ongebalanceerd
         else{
@@ -262,7 +250,9 @@ public class IntervalTree {
     }
 
     /**
-     * balans checken na toevoegen van een node
+     * balans checken van onder naar boven (na toevoegen van een node)
+     * @param node startnode
+     * @return ongebalanceerde node
      */
     public Node checkBalance(Node node){
 
@@ -275,11 +265,10 @@ public class IntervalTree {
             }
         }
         else if(node.isBalanced()){
-            //System.out.println(node.getInterval()+" is gebalanceerd");
+
             return checkBalance(node.getParentNode());
         }
         else{
-            //System.out.println(node.getInterval()+" is niet gebalanceerd");
             return node;
         }
 
@@ -290,7 +279,7 @@ public class IntervalTree {
      * Opgave 3.2
      */
     public void printIntervals() {
-        System.out.println("root van tree "+root.getInterval()+ " met max "+root.getMax());
+
         inOrderPrint(root);
 
     }
@@ -298,7 +287,7 @@ public class IntervalTree {
     public void inOrderPrint(Node node){
         if(node!=null){
             inOrderPrint(node.getLeftNode());
-            System.out.println(node.getInterval() + " met max "+node.getMax());
+            System.out.println(node.getInterval());
             inOrderPrint(node.getRightNode());
         }
 
@@ -311,7 +300,7 @@ public class IntervalTree {
     public List<Interval> findOverlapping(int x) {
         List<Interval> overlapIntervallen= new ArrayList<>();
         checkNumberInNode(x, root, overlapIntervallen);
-        //throw new UnsupportedOperationException("Nog te implementeren!");
+
         overlapIntervallen.sort(new Comparator<Interval>() {
             @Override
             public int compare(Interval o1, Interval o2) {
@@ -321,9 +310,17 @@ public class IntervalTree {
         return overlapIntervallen;
     }
 
+    /**
+     * hulpmethode om alle intervallen waartoe x behoort te verzamelen in list overlapintervallen
+     * @param x
+     * @param node
+     * @param overlapIntervallen
+     */
     public void checkNumberInNode(int x, Node node, List<Interval> overlapIntervallen) {
-
+        // enkel nuttig verder te zoeken in boom, indien x onder max van huidige node ligt
         if (x < node.getMax()) {
+
+            // altijd links verder zoeken, enkel rechts wanneer x groter is dan ondergrens van huidige node
             if(node.getLeftNode()!=null) {
                 checkNumberInNode(x, node.getLeftNode(), overlapIntervallen);
             }
@@ -332,9 +329,8 @@ public class IntervalTree {
                     checkNumberInNode(x, node.getRightNode(), overlapIntervallen);
                 }
             }
-
-
         }
+        // interval toevoegen indien x behoort tot dat interval
         if (node.getInterval().getHigh() > x && x >= node.getInterval().getLow()) {
             overlapIntervallen.add(node.getInterval());
         }
@@ -358,21 +354,31 @@ public class IntervalTree {
         return overlapIntervallen;
     }
 
+    /**
+     * hulpmethode om alle intervallen waarmee ab overlapt te verzamelen in overlapintervallen
+     * @param ab
+     * @param node
+     * @param overlapIntervallen
+     */
     public void checkIntervalInNode(Interval ab, Node node, List<Interval> overlapIntervallen){
 
-        if (ab.getHigh() < node.getMax()) {
+        // afkappen indien ondergrens van interval kleiner is dan max van huidige node
+        if (ab.getLow() < node.getMax()) {
             if(node.getLeftNode()!=null) {
                 checkIntervalInNode(ab, node.getLeftNode(), overlapIntervallen);
             }
-            if(node.getInterval().getLow()<=ab.getLow()){
-                if(node.getRightNode()!=null) {
+
+            // enkel rechts verderzoeken indien bovengrens van interval >= ondergrens huidige node
+            if(ab.getHigh()>=node.getInterval().getLow()) {
+                if (node.getRightNode() != null) {
                     checkIntervalInNode(ab, node.getRightNode(), overlapIntervallen);
                 }
             }
 
 
+
         }
-        if (node.getInterval().getHigh() > ab.getHigh() && ab.getLow() >= node.getInterval().getLow()) {
+        if (node.getInterval().calculateOverlap(ab)!=null) {
             overlapIntervallen.add(node.getInterval());
         }
     }

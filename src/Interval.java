@@ -56,7 +56,7 @@ public class Interval implements Comparable<Interval> {
      */
     public Interval calculateOverlap(Interval b) {
 
-        if((this.low<b.getLow() && this.high <b.getHigh()) || (this.low>b.getLow() && this.high> b.getHigh() )){
+        if((this.low<b.getLow() && this.high <b.getLow()) || (this.low>b.getLow() && this.low> b.getHigh() )){
             return null;
         }
         else {

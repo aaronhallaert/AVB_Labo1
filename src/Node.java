@@ -32,13 +32,14 @@ public class Node {
         }
     }
 
+    /**
+     *
+     * @return maximale diepte van node (dit kan aan linkerkant of rechterkant zijn)
+     */
     public int maxDepth()
     {
-        if (this == null)
-            return 0;
-        else
-        {
-            /* compute the depth of each subtree */
+
+            /* berekenen diepte van elke subtree */
             int lDepth =0;
             if(this.getLeftNode()!=null) {
                 lDepth = this.getLeftNode().maxDepth();
@@ -48,12 +49,12 @@ public class Node {
                 rDepth=this.getRightNode().maxDepth();
             }
 
-            /* use the larger one */
+            /* grootste uitkiezen */
             if (lDepth > rDepth)
                 return (lDepth + 1);
             else
                 return (rDepth + 1);
-        }
+
     }
 
     public int rightDepth()
@@ -66,6 +67,10 @@ public class Node {
         }
     }
 
+    /**
+     *
+     * @return linkerdiepte van huidige node
+     */
     public int leftDepth(){
         if(this.getLeftNode()==null) {
             return 0;
@@ -115,12 +120,9 @@ public class Node {
         this.max = max;
     }
 
-    public void resetMax(){
-        this.setMax(this.getInterval().getHigh());
-    }
 
     /**
-     * update max boven nieuwe node
+     * update max van huidige node en controleer recursief de parent tot root
      * @param max
      */
     public void updateMax(int max){
